@@ -1,0 +1,181 @@
+﻿@model AccentureWatch.Models.Watch
+
+@{
+    ViewData["Title"] = "Add Watch";
+}
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Watches")">Watches</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add</li>
+    </ol>
+</nav>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+      @*  <form asp-action="Add">*@
+        <form method="post" enctype="multipart/form-data" asp-controller="Watches" asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*   <div class="form-group">
+            <label asp-for="ID" class="control-label"></label>
+            <input asp-for="ID" class="form-control" />
+            <span asp-validation-for="ID" class="text-danger"></span>
+            </div>*@
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="ItemName" class="form-label"></label>
+                        <input asp-for="ItemName" class="form-control form-control-sm" />
+                        <span asp-validation-for="ItemName" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="ItemNumber" class="form-label"></label>
+                        <input asp-for="ItemNumber" class="form-control form-control-sm" />
+                        <span asp-validation-for="ItemNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="ShortDescription" class="form-label"></label>
+                        <textarea asp-for="ShortDescription" class="form-control form-control-sm" rows="2"></textarea>
+                        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="FullDescription" class="form-label"></label>
+                        <textarea asp-for="FullDescription" class="form-control form-control-sm" rows="2"></textarea>
+                        <span asp-validation-for="FullDescription" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="Price" class="form-label"></label>
+                        <input asp-for="Price" class="form-control form-control-sm" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="Caliber" class="form-label"></label>
+                        <input asp-for="Caliber" class="form-control form-control-sm" />
+                        <span asp-validation-for="Caliber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="Movement" class="form-label"></label>
+                        <input asp-for="Movement" class="form-control form-control-sm" />
+                        <span asp-validation-for="Movement" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="Chronograph" class="form-label"></label>
+                        <input asp-for="Chronograph" class="form-control form-control-sm" />
+                        <span asp-validation-for="Chronograph" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="Weight" class="form-label"></label>
+                        <input asp-for="Weight" class="form-control form-control-sm" />
+                        <span asp-validation-for="Weight" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="Height" class="form-label"></label>
+                        <input asp-for="Height" class="form-control form-control-sm" />
+                        <span asp-validation-for="Height" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="Diameter" class="form-label"></label>
+                        <input asp-for="Diameter" class="form-control form-control-sm" />
+                        <span asp-validation-for="Diameter" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="Thickness" class="form-label"></label>
+                        <input asp-for="Thickness" class="form-control form-control-sm" />
+                        <span asp-validation-for="Thickness" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="Jewel" class="form-label"></label>
+                        <input asp-for="Jewel" class="form-control form-control-sm" />
+                        <span asp-validation-for="Jewel" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="CaseMaterial" class="form-label"></label>
+                        <input asp-for="CaseMaterial" class="form-control form-control-sm" />
+                        <span asp-validation-for="CaseMaterial" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mb-3">
+                        <label asp-for="StrapMaterial" class="form-label"></label>
+                        <input asp-for="StrapMaterial" class="form-control form-control-sm" />
+                        <span asp-validation-for="StrapMaterial" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group"></div>
+            <label class="form-label">Attach Image</label>
+            <div class="input-group">
+                <input asp-for="FormFile" type="file" class="form-control form-control-sm" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+            </div>
+
+            <div class="float-end">
+                <div class="form-group" style="padding-top:20px; padding-bottom:20px;">
+                    <input type="submit" value="Create" class="btn btn-primary btn-sm" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
