@@ -1,0 +1,172 @@
+﻿@model AccentureWatch.Models.Watch
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card-body" style="background-color:#E8DCBF; text-align:center; margin-top:1px; margin-bottom:5px; padding-bottom:2px !important;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "Watches")">Watches</a></li>
+                <li style="color:#202020" class="breadcrumb-item active" aria-current="page">Details</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Details</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Additional Info</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+            <div class="row" style="padding-top:10px; padding-left:5px;">
+                <div class="col-6">
+                    <dl class="row" style="font-size:15px;">
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.ItemName)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.ItemName)
+                        </dd>
+
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.ItemNumber)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.ItemNumber)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Price)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @string.Format($"{Model.Price:n}")
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Caliber)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Caliber)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Movement)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Movement)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Chronograph)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Chronograph)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Weight)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Weight)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Height)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Height)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Diameter)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Diameter)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Thickness)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Thickness)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Jewel)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Jewel)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.CaseMaterial)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.CaseMaterial)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.StrapMaterial)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.StrapMaterial)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-6 text-center">
+                    <div class="card" style="width: 18rem;">
+                        <img src="@Html.Raw(Model.URL)" class="card-img-top" style="width:246px;height:240px" alt="...">
+                       @* <div class="card-body">
+                            <h6 class="card-title" style="margin: 0px !important">
+                                <span class="d-inline-block text-truncate" style="max-width: 200px;">
+                                    @Model.ItemName
+                                </span>
+                            </h6>
+                            <blockquote style="margin: 0px !important">
+                                <span class="d-inline-block text-truncate" style="max-width: 200px; font-size:medium">
+                                    @Model.ShortDescription
+                                </span>
+                            </blockquote>
+                            <blockquote style="margin:0px !important">
+                                <label style="font-size:small">฿@string.Format($"{Model.Price:n}")</label>
+                            </blockquote>
+                        </div>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+            <div class="row" style="padding-top:10px; padding-left:5px;">
+                <div class="col-12">
+                    <dl class="row" style="font-size:15px;">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.ShortDescription)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.ShortDescription)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.FullDescription)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.FullDescription)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+
+
+        </div>
+     
+    </div>
+</div>
+
+
+
+@*<div>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.ID  }) |
+    <a asp-action="Index">Back to List</a>
+</div>*@

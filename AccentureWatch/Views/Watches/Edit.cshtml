@@ -1,53 +1,50 @@
 ﻿@model AccentureWatch.Models.Watch
 
 @{
-    ViewData["Title"] = "Add Watch";
+    ViewData["Title"] = "Edit";
 }
 
 
-<form method="post" enctype="multipart/form-data" asp-controller="Watches" asp-action="Add">
+<form method="post" enctype="multipart/form-data" asp-controller="Watches" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
 
     <div class="card-body" style="background-color:#E8DCBF; text-align:center; margin-top:1px; margin-bottom:5px; padding-bottom:2px !important;">
         <div class="container">
+
             <div class="row">
                 <div class="col">
                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="@Url.Action("Index", "Watches")">Watches</a></li>
-                            <li style="color:#202020" class="breadcrumb-item active" aria-current="page">Add</li>
+                            <li style="color:#202020" class="breadcrumb-item active" aria-current="page">Edit</li>
                         </ol>
                     </nav>
                 </div>
 
                 <div class="col">
                     <p class="float-end">
-                        @*  <a href="@Url.Action("Add","Watches")" class="btn btn-sm" style="background-color:#202020; color:whitesmoke">Add New</a>*@
-                        <input type="submit" value="Save Watch" class="btn btn-primary btn-sm" style="background-color:#202020; color:whitesmoke" />
+                        <input type="submit" value="Update Watch" class="btn btn-primary btn-sm" style="background-color:#202020; color:whitesmoke" />
                     </p>
                 </div>
             </div>
+
+
+
         </div>
     </div>
 
-
-
-
-
     <div class="container">
 
-        @if (ViewBag.successMessage is not null)
+        @if (TempData["Success"] != null)
         {
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Congratulations!</strong> @ViewBag.successMessage<br />
-                <label>Click <a href="@Url.Action("Details", "Watches", new { id = ViewBag.ID })">here</a> to view the details</label>
+                <strong>Congratulations!</strong> @TempData["Success"]<br />
+                <label>Click <a href="@Url.Action("Details", "Watches", new { id = @TempData["id"] })">here</a> to view the details</label>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-
-        @Html.Raw(@ViewBag.Alert)
-
-
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -57,13 +54,18 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Additional Info</button>
             </li>
-
         </ul>
+
+
 
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
-                <div class="row" style="padding-top:10px; padding-left:5px;">
+                <input asp-for="ID" class="form-control" type="hidden" />
+                <input asp-for="URL" class="form-control" type="hidden" />
+
+
+                <div class="row" style=" padding-top:10px; padding-left:5px;">
                     <div class="col-8">
                         <div class="row">
                             <div class="col">
@@ -91,7 +93,6 @@
                                     <span asp-validation-for="Price" class="text-danger"></span>
                                 </div>
                             </div>
-
                             <div class="col">
                                 <div class="form-group mb-3">
                                     <label asp-for="Caliber" class="form-label" cursor: pointer;" data-bs-toggle="tooltip" data-placement="right" data-bs-title="The specific internal mechanism of a watch or clock, also known as a movement."></label>
@@ -119,7 +120,6 @@
                         </div>
 
                         <div class="row">
-
                             <div class="col">
                                 <div class="form-group mb-3">
                                     <label asp-for="Weight" class="form-label" cursor: pointer;" data-bs-toggle="tooltip" data-placement="right" data-bs-title="A measure of the heaviness of an object."></label>
@@ -157,6 +157,8 @@
                             </div>
                         </div>
 
+
+
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-3">
@@ -177,8 +179,10 @@
 
                     <div class="col-4">
                         <div class="col" style="padding-bottom:20px;">
-                            <div class="card" style="width:18rem;height:270px">
-                                <img src="#" id="imgPreview" class="card-img-top" style="width:250px; height:240px;" alt="...">
+                            <div class="card" style="width: 18rem;height:282px">
+                                <div class="HoverDiv">
+                                    <img src="@Html.Raw(Model.URL)" id="imgPreview" class="card-img-top" style="width:250px;height:240px" alt="...">
+                                </div>
                                 <div class="card-footer">
                                     <input asp-for="FormFile" type="file" style="display: none;" accept="image/png, image/gif, image/jpeg" class="form-control form-control-sm" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                                     <input type="button" class="btn btn-primary btn-sm" style="width:100%" value="Upload Watch" onclick="document.getElementById('FormFile').click();" />
@@ -189,22 +193,22 @@
                     </div>
 
                 </div>
-
             </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 
                 <div style="padding-top:10px; padding-left:5px;">
+
                     <div class="form-group mb-3">
                         <label asp-for="ShortDescription" class="form-label" cursor: pointer;" data-bs-toggle="tooltip" data-placement="right" data-bs-title="Watch short description"></label>
                         <textarea asp-for="ShortDescription" class="form-control form-control-sm" rows="4" onkeyup="characterCounter(ShortDescription, this.form.remCount, 150);" onkeydown="characterCounter(ShortDescription, this.form.remCount, 150);"></textarea>
-                        <small>Remaining characters: <input type="text" style="background: transparent; border: none; outline:none; padding: 0px 0px 0px 0px; max-width:25px; " name="remCount" maxlength="3" value="150" readonly="readonly" /></small>  <br />
+                        <small>Remaining characters: <input id="remCountID" type="text" style="background: transparent; border: none; outline:none; padding: 0px 0px 0px 0px; max-width:25px; " name="remCount" maxlength="3" value="150" readonly="readonly" /></small>  <br />
                         <span asp-validation-for="ShortDescription" class="text-danger"></span>
                     </div>
 
                     <div class="form-group mb-3">
                         <label asp-for="FullDescription" class="form-label" cursor: pointer;" data-bs-toggle="tooltip" data-placement="right" data-bs-title="Watch full description"></label>
                         <textarea asp-for="FullDescription" class="form-control form-control-sm" rows="4" onkeyup="characterCounter(FullDescription, this.form.remCountFullDesc, 500);" onkeydown="characterCounter(FullDescription, this.form.remCountFullDesc, 500);"></textarea>
-                        <small>Remaining characters: <input type="text" style="background: transparent; border: none; outline:none; padding: 0px 0px 0px 0px;  max-width:25px;" name="remCountFullDesc" maxlength="3" value="500" readonly="readonly" /></small>  <br />
+                        <small>Remaining characters: <input id="remCountFullDescID" type="text" style="background: transparent; border: none; outline:none; padding: 0px 0px 0px 0px;  max-width:25px;" name="remCountFullDesc" maxlength="3" value="500" readonly="readonly" /></small>  <br />
                         <span asp-validation-for="FullDescription" class="text-danger"></span>
                     </div>
                 </div>
@@ -215,9 +219,7 @@
 </form>
 
 
-
 @section Scripts {
-
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
@@ -225,6 +227,12 @@
     <script src="~/js/previewimage.js"></script>
 
     <script>
+
+        $(document).ready(function () {
+            $("#remCountID").val((150 - $("#ShortDescription").val().length));
+            $("#remCountFullDescID").val((500 - $("#FullDescription").val().length));
+        });
+
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
@@ -235,6 +243,4 @@
                 countControlId.value = maxCharlimit - controlId.value.length;
         }
     </script>
-
 }
-

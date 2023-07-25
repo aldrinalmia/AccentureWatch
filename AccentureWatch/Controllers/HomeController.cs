@@ -1,23 +1,33 @@
 ﻿using AccentureWatch.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace AccentureWatch.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+      
+        private readonly string? _CarouselApiUrl = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["CarouselApiUrl"];
 
-        public HomeController(ILogger<HomeController> logger)
+        public async Task<IActionResult> Index()
         {
-            _logger = logger;
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(_CarouselApiUrl))
+                {
+                    string? apiResponse = await response.Content.ReadAsStringAsync();
+                    var list = JsonConvert.DeserializeObject<List<Carousel>>(apiResponse);
+                    return View(list);
+                }
+            }
+
         }
 
-        public IActionResult Index()
+        public IActionResult About()
         {
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();

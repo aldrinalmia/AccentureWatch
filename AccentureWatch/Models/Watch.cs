@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
-using DataAnnotationsExtensions;
+
 
 namespace AccentureWatch.Models
 {
@@ -24,15 +22,17 @@ namespace AccentureWatch.Models
 
         [Display(Name = "Short Description")]
         [Required(ErrorMessage = "Required")]
-        [StringLength(50)]
+        [StringLength(150)]
         public string? ShortDescription { get; set; }
 
         [Display(Name = "Full Description")]
         [Required(ErrorMessage = "Required")]
-        [StringLength(100)]
+        [StringLength(500)]
         public string? FullDescription { get; set; }
 
-        [RegularExpression(@"-?\d+(?:\.\d+)?", ErrorMessage = "Please enter valid price (e.g. 20.00)")]
+        [Display(Name = "Price (฿)")]
+        [RegularExpression(@"-?\d+(?:\.\d+)?", ErrorMessage = "Please enter valid price (e.g. 5000.00)")]
+        [Range(5000, 5000000,ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         [Required(ErrorMessage = "Required")]
         public decimal? Price { get; set; }
 
@@ -45,30 +45,36 @@ namespace AccentureWatch.Models
         public string? Movement { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [StringLength(50)]
+        [StringLength(150)]
         public string? Chronograph { get; set; }
 
-        [Display(Name = "Weight (mm)")]
+        [Display(Name = "Weight (g)")]
         [RegularExpression(@"-?\d+(?:\.\d+)?", ErrorMessage = "Please enter valid weight (e.g. 20.00)")]
+        [Range(1, 300, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         [Required(ErrorMessage = "Required")]
         public decimal? Weight { get; set; }
 
         [Display(Name = "Height (mm)")]
         [RegularExpression(@"-?\d+(?:\.\d+)?", ErrorMessage = "Please enter valid height (e.g. 20.00)")]
+        [Range(1, 100, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         [Required(ErrorMessage = "Required")]
         public decimal? Height { get; set; }
 
         [Display(Name = "Diameter (mm)")]
         [RegularExpression(@"-?\d+(?:\.\d+)?", ErrorMessage = "Please enter valid diameter (e.g. 20.00)")]
+        [Range(1, 100, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         [Required(ErrorMessage = "Required")]
         public decimal? Diameter { get; set; }
 
         [Display(Name = "Thickness (mm)")]
         [RegularExpression(@"-?\d+(?:\.\d+)?", ErrorMessage = "Please enter valid thickness (e.g. 20.00)")]
+        [Range(1, 100, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         [Required(ErrorMessage = "Required")]
         public decimal? Thickness { get; set; }
 
-        [Integer(ErrorMessage = "Please enter numbers only")]
+
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Please enter numbers only")]
+        [Range(1, 100, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         [Required(ErrorMessage = "Required")]
         public int? Jewel { get; set; }
 
@@ -82,7 +88,7 @@ namespace AccentureWatch.Models
         [StringLength(30)]
         public string? StrapMaterial { get; set; }
 
-        //[NotMapped]
+        [NotMapped]
         [Display(Name = "File")]
         public IFormFile? FormFile { get; set; }
 

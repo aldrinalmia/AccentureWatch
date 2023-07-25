@@ -3,17 +3,36 @@
     ViewData["Title"] = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
 
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
-}
+<div class="container">
 
-<h3>Development Mode</h3>
+
+    <img src="https://upskillingstorageacct.blob.core.windows.net/blobcontainer/Error.png" class="d...-block w-100" style="height:410px;" alt="...">
+
+    <div class="text-center ">
+        <div class"">
+            <p class="fs-3"> <span class="text-danger">Opps!</span> Error.</p>
+            <p class="lead">
+                An error occurred while processing your request.
+            </p>
+            <a href="@Url.Action("Index","Home")" class="btn btn-primary">Go Home</a>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@*<h3>Development Mode</h3>
 <p>
     Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
 </p>
@@ -23,3 +42,4 @@
     For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
     and restarting the app.
 </p>
+*@

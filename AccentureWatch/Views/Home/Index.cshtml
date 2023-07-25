@@ -1,8 +1,70 @@
-﻿@{
+﻿@model IEnumerable<AccentureWatch.Models.Carousel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+
+        @{
+            int nSlideTo = 0;
+            int nSlide = 1;
+
+            foreach (var item in Model)
+            {
+                var active = nSlideTo == 0 ? "class=active aria-current=true" : "";
+
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@nSlideTo" @active aria-label="Slide @nSlide"></button>
+                nSlideTo++;
+                nSlide++;
+            }
+        }
+    </div>
+
+    <div class="carousel-inner">
+        @{
+            int i = 0;
+            foreach (var item in Model)
+            {
+                i++;
+                var active = i == 1 ? "active" : "";
+                <div class="carousel-item @active">
+                    <a href="@Url.Action("Details","Watches", new { id = item.WatchFkID})">
+                        <img src="@item.URL" class="d...-block w-100" style="height:480px;" alt="...">
+                    </a>
+                </div>
+            }
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+
 </div>
+
+<div id="partialDiv">
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    $.ajax({
+        type: 'GET',
+        url: '@Url.Action("_Watches", "Watches")',
+        // other settings
+        success: function (result) {
+            $('#partialDiv').html(result);
+        }
+    })
+
+</script>

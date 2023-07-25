@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AccentureWatch.Models.Watch>
+
+@{
+    Layout = null;
+}
+
+
+<div class="card-body" style="background-color:#E8DCBF; text-align:center; margin-top:1px; margin-bottom:5px; padding-top:3px !important; padding-bottom:2px !important;">
+    <h2 style="color:#202020;"><strong>MOST POPULAR <span style="color:whitesmoke">WATCHES</span></strong></h2>
+</div>
+
+<div class="container text-center">
+    <div class="row align-items-start">
+        @foreach (var item in Model)
+        {
+            <div class="col" style="padding-bottom:20px;">
+                <div class="card" style="width: 18rem; height:350px !important;">
+                    <img src="@Html.Raw(item.URL)" class="card-img-top" style="width:247px;height:240px" alt="...">
+                    <div class="card-body">
+                        <h6 class="card-title" style="margin: 0px !important">
+                            <span class="d-inline-block text-truncate" style="max-width: 200px; cursor: pointer;" data-bs-toggle="tooltip" data-placement="right" data-bs-title="@item.ItemName">
+                                @item.ItemName
+                            </span>
+                        </h6>
+                        <blockquote style="margin: 0px !important">
+                            <span class="d-inline-block text-truncate" style="max-width: 200px; font-size:medium; cursor:pointer" data-bs-toggle="tooltip" data-placement="right" data-bs-title="@item.ShortDescription">
+                                @item.ShortDescription
+                            </span>
+                        </blockquote>
+                        <blockquote style="margin:0px !important">
+                            <label style="font-size:small">฿@string.Format($"{item.Price:n}")</label>
+                        </blockquote>
+                    </div>
+                 
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+</script>

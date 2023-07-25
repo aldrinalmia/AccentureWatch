@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AccentureWatch.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body style="margin-bottom:0px !important;">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="margin-bottom:0px !important">
             <div class="container-fluid">
-                <img src="~/img/acn.jpg" width="50px;" height="40px;" style="padding-right:10px;"/>
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Accenture Watch</a>
+                <img src="~/img/acn.jpg" style="padding-right:10px; width:50px; height:40px;"/>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Watch Catalog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,26 +27,44 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Watches" asp-action="Index">Watches</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p style="padding-left:5px" class="col-md-4 mb-0 text-muted">© 2023 Accenture Watch</p>
+
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <img src="~/img/acn.jpg" style="padding-right:10px; width:50px; height:40px;" />
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="@Url.Action("Index","Home")" class="nav-link px-2 text-muted">Home</a></li>
+            <li class="nav-item"><a href="@Url.Action("Index","Watches")" class="nav-link px-2 text-muted">Watches</a></li>
+            <li class="nav-item"><a href="@Url.Action("About","Home")" class="nav-link px-2 text-muted">About</a></li>
+        </ul>
+    </footer>
+
+@*    <footer class="fixed-bottom border-bottom" style="padding-bottom:10px;  ">
         <div class="container">
             &copy; 2023 - AccentureWatch - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>*@
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
