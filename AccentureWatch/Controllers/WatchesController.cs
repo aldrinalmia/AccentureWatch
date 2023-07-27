@@ -309,59 +309,9 @@ namespace AccentureWatch.Controllers
         }
 
 
-        [HttpGet]
+
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
-        {
-            try
-            {
-                using (var httpClient = new HttpClient())
-                {
-                    using (var response = await httpClient.GetAsync(_WatchApiUrl + id))
-                    {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-
-                        var list = JsonConvert.DeserializeObject<List<Watch>>(apiResponse);
-
-                        Watch watch = new Watch();
-
-
-                        if (list is not null)
-                        {
-                            foreach (var item in list)
-                            {
-                                watch.ID = item.ID;
-                                watch.ItemName = item.ItemName;
-                                watch.ItemNumber = item.ItemNumber;
-                                watch.ShortDescription = item.ShortDescription;
-                                watch.FullDescription = item.FullDescription;
-                                watch.Price = item.Price;
-                                watch.Caliber = item.Caliber;
-                                watch.Movement = item.Movement;
-                                watch.Chronograph = item.Chronograph;
-                                watch.Weight = item.Weight;
-                                watch.Height = item.Height;
-                                watch.Diameter = item.Diameter;
-                                watch.Thickness = item.Thickness;
-                                watch.Jewel = item.Jewel;
-                                watch.CaseMaterial = item.CaseMaterial;
-                                watch.StrapMaterial = item.StrapMaterial;
-                                watch.URL = item.URL;
-
-                            }
-                        }
-                        return View(watch);
-
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                return View("Error");
-            }
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteWatch(int id)
         {
             try
             {
